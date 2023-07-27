@@ -1,0 +1,82 @@
+
+{% extends 'common/poject.html' %}
+{%load static%}
+
+{% block title %}Comment{% endblock title%}
+
+{% block cs %} 
+<style>
+    table, th, td {
+        border: 1px solid black;
+        }
+    table{
+        text-align: center;
+        width: 90%;
+        margin: 20px ;
+        
+    }
+    .tbl{
+        overflow-x: auto;
+    }
+    th:nth-child(even),td:nth-child(even) {
+  background-color: #D6EEEE;
+}
+@media screen and (max-width: 592px) {
+
+      table{
+        width:100%;
+        border-collapse: collapse;
+       }
+    }
+</style>
+{% endblock cs%}
+
+
+{%block body%}
+
+<div class="container mt-3">
+
+    <form action="{%url 'add'%}" method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name" required>
+        </div>
+      <div class="mb-3 mt-3">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
+      </div>
+      
+      <div class="mb-3 mt-3">
+        <label for="comment">Contact:</label>
+        <textarea class="form-control" rows="5" id="comment" name="comment" required></textarea>
+      </div>
+      <input type="submit" value="Submit">
+    </form>
+</div>
+<h1 class="text-center text-success py-2">Recent Contact's </h1>
+<hr>
+
+{%if tcr%}
+<div class="tbl">
+<table>
+    <tr>
+        <th>name</th><th>comment</th><th>time</th>
+    </tr>
+    {%for th in tcr%}
+    <tr>
+        <td>{{th.name}}</td><td>{{th.usr_inp}}</td><td>{{th.time}}</td>
+    </tr>
+    {%endfor%}
+</table>
+</div>
+
+{%else%}
+<h1 class="text-center">Empty DB</h1>
+{%endif%}
+
+
+<footer class="bg-success text-light position-relative ">
+    <p class="text-center py-1 mr-0">Author: SAJIM UDDIN sajimpk@gmail.com</p>
+</footer>
+{% endblock body %}

@@ -1,0 +1,62 @@
+
+{% extends 'common/poject.html' %}
+<!-- title -->
+{% block title %}About_us{% endblock title%}
+<!-- css start -->
+{% block cs %} 
+<style>
+    table, th, td {
+        border: 1px solid black;
+        }
+    table{
+        text-align: center;
+        width: 90%;
+        margin: 20px ;
+        
+    }
+    .tbl{
+        overflow-x: auto;
+    }
+    th:nth-child(even),td:nth-child(even) {
+  background-color: #D6EEEE;
+}
+@media screen and (max-width: 592px) {
+
+      table{
+        width:100%;
+        border-collapse: collapse;
+       }
+    }
+</style>
+{% endblock cs%}
+
+<!-- body start -->
+
+{% block body %} 
+
+{%if tcr%}
+<h1 class="text-center">Teachers lists </h1>
+<div class="tbl">
+<table>
+    <tr>
+        <th>TEACHER ID</th><th>TEACHER NAME</th><th>TEACHER DEPERMENT</th><th>TEACHER EMAIL</th>
+    </tr>
+    {%for th in tcr%}
+    <tr>
+        <td>{{th.tid}}</td><td>{{th.tname}}</td><td>{{th.tedu}}</td><td><a href="mailto:{{th.temail}}" target="_blank" rel="noopener noreferrer">{{th.temail}}</a></td>
+    </tr>
+    {%endfor%}
+</table>
+</div>
+
+{%else%}
+<h1 class="text-center">Empty DB</h1>
+{%endif%}
+
+
+
+
+<footer class="bg-success text-light position-relative ">
+    <p class="text-center py-1 mr-0">Author: SAJIM UDDIN sajimpk@gmail.com</p>
+</footer>
+{% endblock body%}
