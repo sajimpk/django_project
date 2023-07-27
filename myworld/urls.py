@@ -9,5 +9,4 @@ urlpatterns = [
     # path('insat',include('contact.urls')),
    path('',include('blog.urls')),
    path('about_us/',include('about.urls')),
-   path('user/',include('user.urls')),
 ]
